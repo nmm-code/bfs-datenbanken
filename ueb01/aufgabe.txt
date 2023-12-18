@@ -1,0 +1,39 @@
+Aufgabenstellung
+
+Wir entwickeln einen Neuwagenkonfigurator, welche die Inhalte des nachfolgenden Fachkonzepts abbildet. Die Datenbasis dieses Konfigurators wird z.B. von Verkäufern bei Autohäusern, Marketingexperten in Werbeabteilungen, Lageristen, Ingenieuren oder auch Endkunden verwendet. Je nach Einsatzzweck unterscheidet sich daher die präsentierte Benutzeroberfläche. Deren Gestaltung ist nicht Teil dieser Aufgabe.
+Aufgabe 1
+
+Entwickelt zu der folgenden Beschreibung ein ER-Diagramm in Chen-Notation, wie in der Vorlesung vorgestellt. Jeder Entitytyp soll dabei - ungeachtet vorhandener Attribute, die sich als natürliche Schlüssel anbieten würden - ein künstliches ID-Attribut als Primärschlüssel erhalten. Diese Primärschlüssel (künstlichen ID-Attribute) müssen numerisch sein (keine Buchstaben enthalten). Es darf keinen Entitytypen ohne Primärschlüssel geben. Das entstehende Diagramm soll zusammenhängend sein (und nicht aus mehreren unabhängigen Teilen bestehen). Die Komplexitäten sämtlicher Beziehungen sind zu modellieren.
+
+Für diese Aufgabe gibt es keine Vorgabe zur Verwendung von Tools (z.B. akzeptieren wir auch ein leserlichen Scan einer händischen Zeichnung). Lediglich soll bei Abgabe der Aufgabe das ER-Diagramm als '.pdf' Datei hochgeladen werden.
+
+Empfehlung: draw.io ist ein angenehmes Tool, um ein ER-Diagram digital zu modelieren. 
+
+Aufgabe 2
+
+Das ER-Diagram aus Aufgabe 1 soll in ein Datenbankmodell überführt werden. Hierfür soll die MySQL Workbench verwendet werden. Hauptsächlicher Zweck dieser Aufgabe ist es, die bereitgestellte Funktionalität der MySQL Workbench kennenzulernen und entsprechend einzusetzen. Macht euch dementsprechend mit den Modellierungsfunktionen der MYSQL Workbench vertraut und bereitet euch darauf vor die von euch verwendeten Funktionen im Abnahmegespräch zu erläutern. 
+
+Bei Abgabe der Aufgabe soll die MySQL Workbench erstellte '.mwb' Datei hochgeladen werden.
+Aufgabe 3
+
+Pflegt pro Tabelle jeweils 5 Datensätze ein. Die Datensätze sollten alle nötigen Informationen beinhalten. Fremdschlüssel müssen, wenn vorhanden, passend gesetzt werden. 
+
+Die Datensätze können entweder als SQL-Statements separat geschrieben werden oder direkt in das Datenbankmodell der MySQL Workbench eingepflegt werden. Solltet ihr die SQL-Statements separat schreiben, dann muss bei Abgabe der Aufgabe eine '.sql' Datei hochgeladen werde. Andernfalls müssen die Datensätze in der '.mwb' Datei (aus Aufgabe 2) beinhaltet sein.
+Tipp
+
+Zur Überprüfung des Datenbankmodells aus Aufgabe 2 und zur Erleichterung der Datensatzpflege in Aufgabe 3 lohnt es sich kleine Beispiele - die sich aus der folgenden Beschreibung herleiten lassen - auszudenken. Beispiel: "Kunde 'Max Mustermann' hat Interesse am Modell 'AMG C63 Modelljahr 2023' mit einer Sitzheizung und der Lederausstattung. Hierfür hat er folgende Telefonnummer hinterlegt: 0157 123 456 789 und wünscht eine Kontaktaufnahme zwischen 16 und 18 Uhr erreichbar."
+
+Neuwagenkonfigurator
+
+    Fahrzeuge von Autoherstellern werden in sogenannte Modellreihen untergliedert. Übertragen auf beispielsweise die Mercedes-Benz Group entspricht dies der Klassen-Nomenklatur, also A-Klasse, B-Klasse, C-Klasse usw.. Im Rahmen einer Modellreihe gibt es mehrere Modelle (z.B. 'A140' oder 'A190 CDI'), die sich im wesentlichen in Motorisierung und Serienausstattung unterscheiden. Die Modellreihen werden ständig weiterentwickelt, was in neuen Modellen mündet. Hierbei kann es sich um Face-Lifts oder um komplette Neuentwicklungen handeln. Die Generation wird dabei durch das Modelljahr festgehalten, d.h. es kann z.B. ein Modell 'A140 Modelljahr 2022' und ein Modell 'A140 Modelljahr 2023' geben. Jedes Modell wird über einen definierten Einsatzzeitraum angeboten und gebaut.
+    Es wird eine Menge von Ausstattungen verwaltet, wobei eine Ausstattung jeweils von mehreren Modellen genutzt werden kann. Wie schon für die Modelle gibt es für jede Ausstattung einen sogenannten Einsatzzeitraum, in dem das Werk die Ausstattung anbietet und verbaut. Ausstattungen beziehen sich grundsätzlich auf Modelle und müssen für jedes Modell einer Reihe ggfs. neu erfasst werden.
+    Die Pflege der Einsatzzeiträume werden letztendlich vom Produktmanagement vorgenommen, welche einmal im Quartal zusammen mit der Geschäftsführung die jeweiligen Gültigkeiten planen. Die Angabe von Einsatzzeiträumen ist niemals optional, der Endzeitpunkt eines Zeitraums darf im Augenblick der Erfassung nicht weiter als 5 Jahre in der Zukunft liegen.
+    Ausstattungen können einer oder mehreren Kategorien zugeordnet sein. Diese Kategorien müssen sich - abhängig von der gerade relevanten Präsentationsform - filtern lassen. Es interessiert sich schließlich nicht jeder Kunde für triviale Ausstattungen wie z.B. den Verbandskasten. Zum Zeitpunkt der Erstellung dieser Spezifikation sind die Kategorien 'Ingenieur', 'Marketing', 'Händler' und 'Endkunde' vorgesehen.
+    Zu jedem Modell wird sowohl eine Menge von serienmäßigen Ausstattungen als auch eine Menge von optionalen Ausstattungen festgelegt. Darüber hinaus verwaltet das System zu jeder Ausstattung, welche anderen Ausstattungen dafür vorausgesetzt werden (z.B. 'Sitzheizung' als Vorbedingung für 'Lederausstattung') und welche Ausstattungen dadurch ausgeschlossen werden (z.B. schließt die Ausstattung 'Drei-SpeichenLenkrad' die Ausstattung 'Vier-Speichen-Lenkrad' aus). Diese Ausschlüsse bzw. Vorbedingungen können beliebig kompliziert werden und werfen eine vielzahl praktischer Probleme auf (Kreisfreiheit, topologische Sortierung, widersprüchliche Bedingungen, ...). Im Modell müssen daher zwar die Vorbedingungen und Ausschlüsse abgebildet werden, jedoch nicht etwaige Konsistenzbedingungen.
+    Zu jedem Modell und zu jeder Ausstattung wird eine Listenpreis-Historie geführt, sodass zu jeder Zeit der Preis zu einem bestimmten Zeitpunkt ermittelt werden kann. Dabei ist es möglich, dass während eines Einsatzzeitraumes für eine Ausstattung oder ein Modell verschiedene Preise gültig waren.
+    Für Autohäuser müssen - neben den Stammdaten (also welche Modelle mit welchen Ausstattungen zu welchen Preisen existieren) - konkrete Fahrzeuge mit ihrer jeweiligen Konfiguration verwaltet werden. Die Konfiguration besteht aus dem Modell des Fahrzeugs und den vorhandenen Ausstattungen. Diese Fahrzeug-Repräsentationen dienen einerseits der Planung eines Neuwagens (Erstellung eines Angebotes) als auch der Beschreibung existierender Fahrzeuge (Neu- & Gebrauchtwagen zur Auslieferung). Gebrauchtwagen können dabei auch Modelle anderer Hersteller sein.
+    Um Angebote zu individualisieren benötigt das Marketing-Team eine Liste von Kunden, die zu einem beliebigen Zeitpunkt an einem beliebigen Modell interessiert waren. Für jeden Kunden muss dabei der vollständige Name erfasst werden, sowie mindestens einen Kanal, über welchen man den Kunden erreichen kann. Mögliche Kanäle sind dabei:
+        Telefon: Angabe einer Telefonnummer sowie eines Uhrzeitfensters, in dem der Kunde einem Anruf zugestimmt hat.
+        E-Mail: Meben der E-Mail-Adresse muss eine maximal 2^16 große Zahl erfasst werden können, welche im Rahmen eines Double-Opt-In Verfahrens verwendet wird.
+        Postweg: Für den Postweg muss neben der postalischen Adresse die Anzahl der nicht erfolgreichen Zustellversuche erfasst werden.
+        Rückmeldung von Seiten des Kunden: Der Kunde wünscht keine aktive Benachrichtung oder möchte keine Kontaktdaten hinterlassen.

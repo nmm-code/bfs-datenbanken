@@ -1,0 +1,13 @@
+Aufgabenstellung
+Ein Datenbankschema einer Fachhochschule wurde uns auf einem Datenbankserver zur Verfügung gestellt. 
+Das ER-Modell als auch das Datenbankmodell befindet sich im Anhang. 
+
+Voraussetzung für diese Aufgabe
+
+    MySQL Workbench ist installiert
+    Man befindet sich im FH Wedel Netzwerk (oder ist via VPN eingewählt)
+    Verbindung zum Datenbankserver kann hergestellt werden. Siehe: https://lms.fh-wedel.de/mod/page/view.php?id=29627
+
+Aufgabe
+
+`Aufgabe_2.sql` beinhaltet insgesamt 26 Fragen (in Form von Kommentaren), welche durch SQL Befehle gelöst werden müssen. Zum Entwerfen und zur Verifikation der zu entwerfenden SQL Befehle könnt ihr den Datenbankserver `db-uebung.fh-wedel.de` verwenden.  Zur Abgabe wird erwartet, dass die SQL Datei `Aufgabe_2.sql` mit all euren SQL Befehlen gefüllt ist. 
